@@ -1,0 +1,24 @@
+services:
+  test:
+    image: php:8.1-cli
+    container_name: net-filter-php-test
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - ../../:/app/net_filter:ro
+      - ../:/app/test:ro
+    working_dir: /app
+    command: sleep infinity
+    networks:
+      - test-net
+
+  internal-api:
+    image: nginx:alpine
+    container_name: net-filter-php-internal
+    volumes:
+      - ./internal-api:/usr/share/nginx/html:ro
+    networks:
+      - test-net
+
+networks:
+  test-net:
+    driver: bridge

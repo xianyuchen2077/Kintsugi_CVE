@@ -1,0 +1,10 @@
+services:
+  web:
+    image: cve-2018-1000533-web
+    container_name: stack-tracer-php7-test
+    ports:
+      - "8080:80"
+    volumes:
+      - ./tracer.so:/usr/local/lib/php/extensions/no-debug-non-zts-20160303/tracer.so
+      - ./99-tracer.ini:/usr/local/etc/php/conf.d/99-tracer.ini
+    working_dir: /var/www/html

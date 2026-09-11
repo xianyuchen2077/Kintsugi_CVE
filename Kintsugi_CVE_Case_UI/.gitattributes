@@ -1,0 +1,2 @@
+# Preserve exact sample bytes, including EPS disguised as JPG.
+public/case-samples/**/*.jpg -text

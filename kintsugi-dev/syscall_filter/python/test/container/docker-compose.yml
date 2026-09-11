@@ -1,0 +1,7 @@
+version: '2'
+services:
+  web:
+    image: vulhub/pgadmin:6.16
+    container_name: syscall-filter-python-test
+    ports:
+      - "5050:5050"

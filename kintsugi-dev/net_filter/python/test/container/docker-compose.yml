@@ -1,0 +1,26 @@
+services:
+  # Python test container
+  test:
+    image: python:3.10-slim
+    container_name: net-filter-python-test
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - ../../:/app/net_filter:ro
+      - ../:/app/test:ro
+    working_dir: /app
+    command: sleep infinity
+    networks:
+      - test-net
+
+  # Mock internal API service
+  internal-api:
+    image: nginx:alpine
+    container_name: net-filter-python-internal
+    volumes:
+      - ./internal-api:/usr/share/nginx/html:ro
+    networks:
+      - test-net
+
+networks:
+  test-net:
+    driver: bridge

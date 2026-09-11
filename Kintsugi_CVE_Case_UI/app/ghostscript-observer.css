@@ -1,0 +1,82 @@
+.gs-observer { --gs-accent: #a1bbc9; min-width: 0; color: #d4d9dd; font-size: 1rem; line-height: 1.6; }
+.gs-observer * { min-width: 0; }
+.gs-attack { --gs-accent: #d5a19b; }
+.gs-protected { --gs-accent: #9cc2ac; }
+.gs-observer-heading { display: flex; justify-content: space-between; align-items: start; gap: 14px; padding-bottom: 10px; }
+.gs-observer-heading span { color: #a1afb8; font-size: .875rem; }
+.gs-observer-heading h3 { margin: 5px 0 0; color: #ecedeb; font-size: 1.25rem; font-weight: 550; }
+.gs-observer-heading > small { color: #aaadb1; font-size: .8125rem; white-space: nowrap; }
+.gs-environment { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 10px 0 14px; border-top: 1px solid var(--line); font-size: .875rem; }
+.gs-environment > span { color: #94a4ac; }
+.gs-environment code { font: .875rem/1.6 var(--mono); overflow-wrap: anywhere; }
+.gs-environment em { font-style: normal; color: var(--gs-accent); }
+.gs-processing { display: grid; grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr) 18px minmax(0, 1fr); align-items: center; margin-top: 16px; }
+.gs-processing > div { align-self: stretch; border-bottom: 2px solid #343c41; padding: 10px 5px 12px; color: #8f9ca4; }
+.gs-processing > div > span { font: .8125rem var(--mono); display: block; padding-bottom: 5px; }
+.gs-processing strong { display: block; font-size: 1rem; font-weight: 550; }
+.gs-processing small { display: block; margin-top: 5px; font-size: .8125rem; }
+.gs-processing .is-reached, .gs-processing .parser-reached { border-color: var(--gs-accent); color: #d7e0e4; }
+.gs-processing .is-guarded { border-color: #9cc2ac; color: #b7d1c2; }
+.gs-processing .parser-stopped { border-bottom-style: dashed; color: #758087; }
+.parser-stopped strong { text-decoration: line-through; }
+.gs-arrow { text-align: center; color: #7d8f99; }
+.gs-extra-branch { display: flex; gap: 10px; align-items: baseline; min-height: 86px; padding: 16px 10px; color: #85939c; border-left: 1px dashed #43505a; margin: 10px 0 16px 9px; }
+.gs-extra-branch strong { display: block; font-size: .9375rem; font-weight: 500; }
+.gs-extra-branch code { display: block; font: .8125rem/1.7 var(--mono); overflow-wrap: anywhere; margin-top: 4px; }
+.gs-extra-branch > small { margin-left: auto; flex-shrink: 0; font-size: .75rem; color: #84939a; }
+.gs-extra-branch.is-active { border-color: #d5a19b; color: #e3b9b2; }
+.gs-extra-branch.is-guarded { border-color: #9cc2ac; color: #b7d1c2; }
+.gs-filesystem { border: 1px solid #3a454c; border-radius: 5px; overflow: hidden; background: #101518; }
+.gs-folder-toolbar { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid #303a40; background: #1b2328; }
+.gs-folder-toolbar svg { width: 24px; height: 24px; color: #b7ab89; flex-shrink: 0; }
+.gs-folder-toolbar code { font: 1rem var(--mono); }
+.gs-folder-toolbar span { margin-left: auto; font-size: .8125rem; color: #a2aeb5; }
+.gs-file-row { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 122px; padding: 22px 16px; border: 0; background: transparent; color: #a7b3ba; cursor: pointer; text-align: left; }
+.gs-file-row svg { width: 34px; height: 42px; flex-shrink: 0; opacity: .65; }
+.gs-file-row > div { flex: 1; }
+.gs-file-row strong { display: block; font-size: 1.25rem; font-weight: 550; overflow-wrap: anywhere; }
+.gs-file-row span { display: block; font-size: .875rem; line-height: 1.6; margin-top: 5px; }
+.gs-file-row em { white-space: nowrap; font-size: .875rem; font-style: normal; }
+.gs-file-row b { font-weight: normal; }
+.gs-file-row:hover { background: #1a242b; }
+.gs-file-row:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
+.gs-file-row.file-present { color: #e4b0a8; background: #291f20; }
+.gs-file-row.file-absent { color: #b2c6be; }
+.gs-file-footnote { display: flex; justify-content: space-between; gap: 8px; padding: 8px 14px; font-size: .8125rem; border-top: 1px solid #2d373d; color: #a7b3ba; }
+.gs-observation-result { padding: 16px 0 0; }
+.gs-observation-result strong { display: block; font-size: 1.0625rem; font-weight: 550; color: var(--gs-accent); }
+.gs-observation-result > span { display: block; font-size: .875rem; color: #a4b1b9; margin-top: 6px; }
+.gs-source-note { margin-top: 18px; padding: 16px; background: #1b211f; border-left: 2px solid #af9c70; }
+.gs-source-note h4 { margin: 0; font-size: 1rem; }
+.gs-source-note p { font-size: .9375rem; line-height: 1.8; }
+.gs-source-note code { font: .8125rem/1.7 var(--mono); overflow-wrap: anywhere; }
+.gs-compact { padding: 12px 16px; }
+.gs-compact .gs-observer-heading { display: none; }
+.gs-compact .gs-file-row { min-height: 84px; padding: 10px 12px; gap: 10px; }
+.gs-compact .gs-file-row strong { font-size: 1.125rem; }
+.gs-compact .gs-file-row svg { width: 28px; }
+.gs-compact .gs-folder-toolbar > span { display: none; }
+.gs-compact .gs-extra-branch { margin-bottom: 10px; min-height: 86px; padding: 12px 8px; }
+.gs-compact .gs-extra-branch > small { display: none; }
+.gs-compact .gs-file-row em { font-size: .8125rem; }
+.traffic-comparison .traffic-lane { display: flex; flex-direction: column; }
+.traffic-comparison .traffic-lane-heading { padding: 12px 16px; }
+.traffic-comparison .traffic-lane-heading > p { display: none; }
+.traffic-comparison .traffic-lane-controls { margin-top: 10px; }
+.traffic-comparison .traffic-input { padding: 10px 16px; }
+.traffic-comparison .traffic-output { flex: none; padding-top: 14px; }
+.traffic-full-steps { margin: 0 16px; border-top: 1px solid var(--line); }
+.traffic-full-steps summary { padding: 12px 0; cursor: pointer; color: #c4b58e; font-size: .875rem; }
+.traffic-full-steps .traffic-steps { padding: 10px 0; }
+.traffic-comparison .traffic-takeaway { min-height: 0; }
+.traffic-comparison .traffic-source { font-size: .8125rem; }
+.evidence-workspace .system-call-dashboard { padding: 22px; }
+.case-anatomy .ghostscript-arena.evidence-workspace { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.evidence-workspace .upload-log-strip { max-height: 120px; overflow-y: auto; }
+.evidence-workspace .sample-empty { min-height: 180px; align-items: center; border: 1px dashed #43515a; padding: 24px; background: #10171b; }
+.evidence-workspace .sample-actions { width: 100%; }
+.evidence-workspace .sample-actions button { flex: 1 1 120px; min-height: 42px; }
+.evidence-workspace .sample-actions .sample-protected { color: #b7d1c2; border-color: #4c675a; }
+@media (max-width: 1150px) { .gs-compact .gs-processing { grid-template-columns: minmax(0, 1fr); } .gs-compact .gs-processing > div { display: flex; align-items: baseline; gap: 10px; padding: 6px 0; } .gs-compact .gs-arrow { display: none; } .gs-compact .gs-processing small { margin: 0 0 0 auto; } }
+@media (max-width: 650px) { .gs-observer-heading { flex-wrap: wrap; } .gs-processing { grid-template-columns: minmax(0, 1fr); } .gs-processing > div { display: flex; align-items: baseline; gap: 12px; } .gs-processing small { margin: 0 0 0 auto; } .gs-arrow { display: none; } .gs-file-row { flex-wrap: wrap; } .gs-file-row em { margin-left: auto; } .gs-file-footnote { flex-wrap: wrap; } }
+@media (max-width: 1000px) { .case-anatomy .ghostscript-arena.evidence-workspace { grid-template-columns: 1fr; } }

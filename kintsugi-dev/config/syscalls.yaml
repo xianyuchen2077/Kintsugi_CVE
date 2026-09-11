@@ -1,0 +1,62 @@
+syscalls:
+  # Process
+  - execve
+  - execveat
+  - clone3
+  - clone
+  - fork
+  - vfork
+
+  # Network
+  - connect
+  - bind
+  - listen
+  - accept
+  - accept4
+  - socket
+  - sendto
+  - sendmsg
+  - recvfrom
+  - recvmsg
+  - setsockopt
+  - getsockopt
+  - shutdown
+
+  # File
+  - open
+  - openat
+  - read
+  - write
+  - close
+  - unlink
+  - unlinkat
+  - chmod
+  - fchmod
+  - fchmodat
+  - chown
+  - fchown
+  - fchownat
+  - rename
+  - renameat
+  - renameat2
+  - creat
+
+  # Directory
+  - mkdir
+  - mkdirat
+  - symlink
+  - symlinkat
+  - rmdir
+
+  # File descriptor
+  - dup
+  - dup2
+  - dup3
+  - fcntl
+  - lseek
+  - flock
+  - pipe
+  - pipe2
+
+  # Special
+  - prctl

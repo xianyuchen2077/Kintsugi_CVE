@@ -1,0 +1,11 @@
+version: '2'
+services:
+  web:
+    image: vulhub/ghostscript:9.23-with-flask
+    container_name: stack-tracer-python-test
+    command: python app.py
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app.py:/usr/src/app.py
+      - ./tracer.ini:/etc/tracer.ini

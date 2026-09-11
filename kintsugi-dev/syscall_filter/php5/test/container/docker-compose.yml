@@ -1,0 +1,15 @@
+services:
+  web:
+    image: docker.xuanyuan.me/vulhub/joomla:3.4.5
+    container_name: syscall-filter-test-php5
+    ports:
+     - "8070:80"
+    volumes:
+     - ./data:/var/www/html/images/data
+     - /proc:/host/proc:ro
+     - /sys/fs/bpf:/sys/fs/bpf:rw
+     - ./syscall_filter.so:/usr/local/lib/php/extensions/no-debug-non-zts-20131226/syscall_filter.so
+     - ./99-syscall-filter.ini:/usr/local/etc/php/conf.d/99-syscall-filter.ini
+     - ../../test:/test:ro
+    cap_add:
+     - SYS_ADMIN

@@ -1,0 +1,315 @@
+@supports (zoom: 1.08) {
+  body {
+    zoom: 1.08;
+  }
+}
+
+.cve strong,
+.topbar h1,
+.headline h2,
+.sectiontitle h3 {
+  letter-spacing: 0 !important;
+}
+
+.cve strong {
+  font-size: 15px !important;
+}
+
+.cve small,
+.sidefoot,
+.tabs button,
+.health,
+.secondary,
+.primary,
+.headline p,
+.result small,
+.skipnote,
+.validrow b,
+.launchbutton,
+.fieldgrid select,
+.fieldgrid .textinput,
+.fieldgrid label > span,
+.runbadge span,
+.launchpanel dd,
+.launchpanel dt {
+  font-size: 12px !important;
+}
+
+.cve small em,
+.pill,
+.result span,
+.sectiontitle span,
+.stage b,
+.stage small,
+.repair small,
+.repair em,
+.terminalhead em,
+.terminalhead button,
+.bridgeinput > span,
+.bridgeinput button,
+.connectionstate,
+.preflighthead span,
+.checkgrid b,
+.checkgrid small,
+.previewcommand span,
+.previewcommand button,
+.bridgesetup li span,
+.apicontract span,
+.historytoolbar,
+.historyrow,
+.runidentity code,
+.runidentity small,
+.runstatus,
+.validationmini,
+.draweractions button,
+.candidatehead,
+.candidatelist small,
+.candidatelist em,
+.scorelegend,
+.tracecol header span,
+.tracecol li span,
+.tracecol li code,
+.tracefinding,
+.filepath,
+.explain p,
+.explain dl div,
+.strategy > p,
+.strategytag,
+.strategyflow span,
+.methodcompare table,
+.treechildren code,
+.treechildren small,
+.coveragestats div,
+.coveragehint,
+.resulttoolbar button,
+.resulttr,
+.command span,
+.command code,
+.progressbox small,
+.emptylog {
+  font-size: 10px !important;
+}
+
+.brand span,
+.stage span,
+.validrow small,
+.repair code,
+.terminalhead b,
+.connectiontitle b,
+.connectiontitle span,
+.modecontrol button,
+.bridgeinput input,
+.preflighthead h3,
+.previewcommand code,
+.bridgesetup h3,
+.bridgesetup > div > p:last-child,
+.historymetrics span,
+.historymetrics small,
+.comparelabels span,
+.comparecol > span,
+.comparecol > strong,
+.compareinsight li,
+.artifactgrid code,
+.artifactgrid span,
+.validationbadge span,
+.validationbadge strong,
+.treeroot code,
+.treeroot span,
+.treeroot b,
+.resultmetrics span,
+.resulttr code,
+.candidatelist code,
+.sourcehead h3,
+.codeblock pre,
+.codetabs,
+.explain h4,
+.methodcompare h3,
+.checkfield b,
+.checkfield small,
+.launchhint {
+  font-size: 11px !important;
+}
+
+.fieldgrid .textinput {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d5dfda;
+  border-radius: 7px;
+  background: #fbfcfb;
+  color: #253a31;
+  padding: 0 10px;
+  outline: none;
+}
+
+.fieldgrid .textinput:focus {
+  border-color: #62a287;
+  box-shadow: 0 0 0 3px #e2f0e9;
+}
+
+.fieldgrid label > small,
+.checkfield small,
+.launchhint,
+.command code,
+.progressbox small,
+.logbody,
+.bridgesetup code,
+.previewcommand code {
+  font-size: 12px !important;
+}
+
+.logbody {
+  font-size: 12px !important;
+  line-height: 1.9 !important;
+}
+
+.headline h2 {
+  font-size: 31px !important;
+}
+
+.topbar h1 {
+  font-size: 24px !important;
+}
+
+.sectiontitle h3,
+.validationtop h3 {
+  font-size: 18px !important;
+}
+
+.funnelrow strong,
+.historymetrics strong,
+.coveragecircle strong {
+  font-size: 28px !important;
+}
+
+.dangerbtn {
+  border-color: #e1b8ab !important;
+  color: #984b3a !important;
+}
+
+.recenthero {
+  display: grid;
+  grid-template-columns: 1fr auto minmax(220px, .8fr);
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.recenthero span {
+  color: #7c8a83;
+  font-size: 12px;
+}
+
+.recenthero h3 {
+  font: 22px Georgia, serif;
+  margin: 3px 0;
+}
+
+.recenthero p {
+  margin: 0;
+  color: #66746d;
+  font-size: 12px;
+}
+
+.recenthero code {
+  justify-self: end;
+  font-size: 12px;
+  color: #44574e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.artifactselect {
+  padding: 12px 15px;
+  margin-bottom: 15px;
+}
+
+.artifactselect label {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.artifactselect span {
+  color: #65746d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.artifactselect select {
+  height: 38px;
+  border: 1px solid #d5dfda;
+  border-radius: 7px;
+  background: #fbfcfb;
+  color: #263b32;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.treechildren code,
+.treeroot code,
+.resulttr code,
+.tracecol li code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace !important;
+  font-style: normal !important;
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
+  line-height: 1.55 !important;
+}
+
+.treeroot {
+  grid-template-columns: 20px minmax(150px, 260px) minmax(80px, 1fr) 58px !important;
+  column-gap: 12px !important;
+}
+
+.treeroot code,
+.treeroot span,
+.treeroot b {
+  min-width: 0;
+}
+
+.treeroot code {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.treeroot span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.treechildren code {
+  font-size: 12px !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+.treechildren .allow,
+.treechildren .deny,
+.treechildren .rule {
+  font-family: "SFMono-Regular", Consolas, monospace !important;
+  font-style: normal !important;
+  font-size: 10px !important;
+  line-height: 1 !important;
+  min-width: 50px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.treechildren > div {
+  grid-template-columns: 18px 58px minmax(0, 1fr) 72px !important;
+  column-gap: 8px;
+}
+
+.treechildren .rule {
+  color: #426a5a;
+  background: #eef3f1;
+  border-radius: 3px;
+  padding: 3px 5px;
+}

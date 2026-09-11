@@ -1,0 +1,411 @@
+package com.syscallfilter;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * x86-64 系统调用映射表
+ * 基于 Linux 内核 5.15.0-153-generic
+ */
+public final class SyscallTable {
+
+    private static final Map<String, Integer> TABLE;
+
+    static {
+        Map<String, Integer> table = new HashMap<>();
+        table.put("read", 0);
+        table.put("write", 1);
+        table.put("open", 2);
+        table.put("close", 3);
+        table.put("stat", 4);
+        table.put("fstat", 5);
+        table.put("lstat", 6);
+        table.put("poll", 7);
+        table.put("lseek", 8);
+        table.put("mmap", 9);
+        table.put("mprotect", 10);
+        table.put("munmap", 11);
+        table.put("brk", 12);
+        table.put("rt_sigaction", 13);
+        table.put("rt_sigprocmask", 14);
+        table.put("rt_sigreturn", 15);
+        table.put("ioctl", 16);
+        table.put("pread64", 17);
+        table.put("pwrite64", 18);
+        table.put("readv", 19);
+        table.put("writev", 20);
+        table.put("access", 21);
+        table.put("pipe", 22);
+        table.put("select", 23);
+        table.put("sched_yield", 24);
+        table.put("mremap", 25);
+        table.put("msync", 26);
+        table.put("mincore", 27);
+        table.put("madvise", 28);
+        table.put("shmget", 29);
+        table.put("shmat", 30);
+        table.put("shmctl", 31);
+        table.put("dup", 32);
+        table.put("dup2", 33);
+        table.put("pause", 34);
+        table.put("nanosleep", 35);
+        table.put("getitimer", 36);
+        table.put("alarm", 37);
+        table.put("setitimer", 38);
+        table.put("getpid", 39);
+        table.put("sendfile", 40);
+        table.put("socket", 41);
+        table.put("connect", 42);
+        table.put("accept", 43);
+        table.put("sendto", 44);
+        table.put("recvfrom", 45);
+        table.put("sendmsg", 46);
+        table.put("recvmsg", 47);
+        table.put("shutdown", 48);
+        table.put("bind", 49);
+        table.put("listen", 50);
+        table.put("getsockname", 51);
+        table.put("getpeername", 52);
+        table.put("socketpair", 53);
+        table.put("setsockopt", 54);
+        table.put("getsockopt", 55);
+        table.put("clone", 56);
+        table.put("fork", 57);
+        table.put("vfork", 58);
+        table.put("execve", 59);
+        table.put("exit", 60);
+        table.put("wait4", 61);
+        table.put("kill", 62);
+        table.put("uname", 63);
+        table.put("semget", 64);
+        table.put("semop", 65);
+        table.put("semctl", 66);
+        table.put("shmdt", 67);
+        table.put("msgget", 68);
+        table.put("msgsnd", 69);
+        table.put("msgrcv", 70);
+        table.put("msgctl", 71);
+        table.put("fcntl", 72);
+        table.put("flock", 73);
+        table.put("fsync", 74);
+        table.put("fdatasync", 75);
+        table.put("truncate", 76);
+        table.put("ftruncate", 77);
+        table.put("getdents", 78);
+        table.put("getcwd", 79);
+        table.put("chdir", 80);
+        table.put("fchdir", 81);
+        table.put("rename", 82);
+        table.put("mkdir", 83);
+        table.put("rmdir", 84);
+        table.put("creat", 85);
+        table.put("link", 86);
+        table.put("unlink", 87);
+        table.put("symlink", 88);
+        table.put("readlink", 89);
+        table.put("chmod", 90);
+        table.put("fchmod", 91);
+        table.put("chown", 92);
+        table.put("fchown", 93);
+        table.put("lchown", 94);
+        table.put("umask", 95);
+        table.put("gettimeofday", 96);
+        table.put("getrlimit", 97);
+        table.put("getrusage", 98);
+        table.put("sysinfo", 99);
+        table.put("times", 100);
+        table.put("ptrace", 101);
+        table.put("getuid", 102);
+        table.put("syslog", 103);
+        table.put("getgid", 104);
+        table.put("setuid", 105);
+        table.put("setgid", 106);
+        table.put("geteuid", 107);
+        table.put("getegid", 108);
+        table.put("setpgid", 109);
+        table.put("getppid", 110);
+        table.put("getpgrp", 111);
+        table.put("setsid", 112);
+        table.put("setreuid", 113);
+        table.put("setregid", 114);
+        table.put("getgroups", 115);
+        table.put("setgroups", 116);
+        table.put("setresuid", 117);
+        table.put("getresuid", 118);
+        table.put("setresgid", 119);
+        table.put("getresgid", 120);
+        table.put("getpgid", 121);
+        table.put("setfsuid", 122);
+        table.put("setfsgid", 123);
+        table.put("getsid", 124);
+        table.put("capget", 125);
+        table.put("capset", 126);
+        table.put("rt_sigpending", 127);
+        table.put("rt_sigtimedwait", 128);
+        table.put("rt_sigqueueinfo", 129);
+        table.put("rt_sigsuspend", 130);
+        table.put("sigaltstack", 131);
+        table.put("utime", 132);
+        table.put("mknod", 133);
+        table.put("uselib", 134);
+        table.put("personality", 135);
+        table.put("ustat", 136);
+        table.put("statfs", 137);
+        table.put("fstatfs", 138);
+        table.put("sysfs", 139);
+        table.put("getpriority", 140);
+        table.put("setpriority", 141);
+        table.put("sched_setparam", 142);
+        table.put("sched_getparam", 143);
+        table.put("sched_setscheduler", 144);
+        table.put("sched_getscheduler", 145);
+        table.put("sched_get_priority_max", 146);
+        table.put("sched_get_priority_min", 147);
+        table.put("sched_rr_get_interval", 148);
+        table.put("mlock", 149);
+        table.put("munlock", 150);
+        table.put("mlockall", 151);
+        table.put("munlockall", 152);
+        table.put("vhangup", 153);
+        table.put("modify_ldt", 154);
+        table.put("pivot_root", 155);
+        table.put("_sysctl", 156);
+        table.put("prctl", 157);
+        table.put("arch_prctl", 158);
+        table.put("adjtimex", 159);
+        table.put("setrlimit", 160);
+        table.put("chroot", 161);
+        table.put("sync", 162);
+        table.put("acct", 163);
+        table.put("settimeofday", 164);
+        table.put("mount", 165);
+        table.put("umount2", 166);
+        table.put("swapon", 167);
+        table.put("swapoff", 168);
+        table.put("reboot", 169);
+        table.put("sethostname", 170);
+        table.put("setdomainname", 171);
+        table.put("iopl", 172);
+        table.put("ioperm", 173);
+        table.put("create_module", 174);
+        table.put("init_module", 175);
+        table.put("delete_module", 176);
+        table.put("get_kernel_syms", 177);
+        table.put("query_module", 178);
+        table.put("quotactl", 179);
+        table.put("nfsservctl", 180);
+        table.put("getpmsg", 181);
+        table.put("putpmsg", 182);
+        table.put("afs_syscall", 183);
+        table.put("tuxcall", 184);
+        table.put("security", 185);
+        table.put("gettid", 186);
+        table.put("readahead", 187);
+        table.put("setxattr", 188);
+        table.put("lsetxattr", 189);
+        table.put("fsetxattr", 190);
+        table.put("getxattr", 191);
+        table.put("lgetxattr", 192);
+        table.put("fgetxattr", 193);
+        table.put("listxattr", 194);
+        table.put("llistxattr", 195);
+        table.put("flistxattr", 196);
+        table.put("removexattr", 197);
+        table.put("lremovexattr", 198);
+        table.put("fremovexattr", 199);
+        table.put("tkill", 200);
+        table.put("time", 201);
+        table.put("futex", 202);
+        table.put("sched_setaffinity", 203);
+        table.put("sched_getaffinity", 204);
+        table.put("set_thread_area", 205);
+        table.put("io_setup", 206);
+        table.put("io_destroy", 207);
+        table.put("io_getevents", 208);
+        table.put("io_submit", 209);
+        table.put("io_cancel", 210);
+        table.put("get_thread_area", 211);
+        table.put("lookup_dcookie", 212);
+        table.put("epoll_create", 213);
+        table.put("epoll_ctl_old", 214);
+        table.put("epoll_wait_old", 215);
+        table.put("remap_file_pages", 216);
+        table.put("getdents64", 217);
+        table.put("set_tid_address", 218);
+        table.put("restart_syscall", 219);
+        table.put("semtimedop", 220);
+        table.put("fadvise64", 221);
+        table.put("timer_create", 222);
+        table.put("timer_settime", 223);
+        table.put("timer_gettime", 224);
+        table.put("timer_getoverrun", 225);
+        table.put("timer_delete", 226);
+        table.put("clock_settime", 227);
+        table.put("clock_gettime", 228);
+        table.put("clock_getres", 229);
+        table.put("clock_nanosleep", 230);
+        table.put("exit_group", 231);
+        table.put("epoll_wait", 232);
+        table.put("epoll_ctl", 233);
+        table.put("tgkill", 234);
+        table.put("utimes", 235);
+        table.put("vserver", 236);
+        table.put("mbind", 237);
+        table.put("set_mempolicy", 238);
+        table.put("get_mempolicy", 239);
+        table.put("mq_open", 240);
+        table.put("mq_unlink", 241);
+        table.put("mq_timedsend", 242);
+        table.put("mq_timedreceive", 243);
+        table.put("mq_notify", 244);
+        table.put("mq_getsetattr", 245);
+        table.put("kexec_load", 246);
+        table.put("waitid", 247);
+        table.put("add_key", 248);
+        table.put("request_key", 249);
+        table.put("keyctl", 250);
+        table.put("ioprio_set", 251);
+        table.put("ioprio_get", 252);
+        table.put("inotify_init", 253);
+        table.put("inotify_add_watch", 254);
+        table.put("inotify_rm_watch", 255);
+        table.put("migrate_pages", 256);
+        table.put("openat", 257);
+        table.put("mkdirat", 258);
+        table.put("mknodat", 259);
+        table.put("fchownat", 260);
+        table.put("futimesat", 261);
+        table.put("newfstatat", 262);
+        table.put("unlinkat", 263);
+        table.put("renameat", 264);
+        table.put("linkat", 265);
+        table.put("symlinkat", 266);
+        table.put("readlinkat", 267);
+        table.put("fchmodat", 268);
+        table.put("faccessat", 269);
+        table.put("pselect6", 270);
+        table.put("ppoll", 271);
+        table.put("unshare", 272);
+        table.put("set_robust_list", 273);
+        table.put("get_robust_list", 274);
+        table.put("splice", 275);
+        table.put("tee", 276);
+        table.put("sync_file_range", 277);
+        table.put("vmsplice", 278);
+        table.put("move_pages", 279);
+        table.put("utimensat", 280);
+        table.put("epoll_pwait", 281);
+        table.put("signalfd", 282);
+        table.put("timerfd_create", 283);
+        table.put("eventfd", 284);
+        table.put("fallocate", 285);
+        table.put("timerfd_settime", 286);
+        table.put("timerfd_gettime", 287);
+        table.put("accept4", 288);
+        table.put("signalfd4", 289);
+        table.put("eventfd2", 290);
+        table.put("epoll_create1", 291);
+        table.put("dup3", 292);
+        table.put("pipe2", 293);
+        table.put("inotify_init1", 294);
+        table.put("preadv", 295);
+        table.put("pwritev", 296);
+        table.put("rt_tgsigqueueinfo", 297);
+        table.put("perf_event_open", 298);
+        table.put("recvmmsg", 299);
+        table.put("fanotify_init", 300);
+        table.put("fanotify_mark", 301);
+        table.put("prlimit64", 302);
+        table.put("name_to_handle_at", 303);
+        table.put("open_by_handle_at", 304);
+        table.put("clock_adjtime", 305);
+        table.put("syncfs", 306);
+        table.put("sendmmsg", 307);
+        table.put("setns", 308);
+        table.put("getcpu", 309);
+        table.put("process_vm_readv", 310);
+        table.put("process_vm_writev", 311);
+        table.put("kcmp", 312);
+        table.put("finit_module", 313);
+        table.put("sched_setattr", 314);
+        table.put("sched_getattr", 315);
+        table.put("renameat2", 316);
+        table.put("seccomp", 317);
+        table.put("getrandom", 318);
+        table.put("memfd_create", 319);
+        table.put("kexec_file_load", 320);
+        table.put("bpf", 321);
+        table.put("execveat", 322);
+        table.put("userfaultfd", 323);
+        table.put("membarrier", 324);
+        table.put("mlock2", 325);
+        table.put("copy_file_range", 326);
+        table.put("preadv2", 327);
+        table.put("pwritev2", 328);
+        table.put("pkey_mprotect", 329);
+        table.put("pkey_alloc", 330);
+        table.put("pkey_free", 331);
+        table.put("statx", 332);
+        table.put("io_pgetevents", 333);
+        table.put("rseq", 334);
+        table.put("pidfd_send_signal", 424);
+        table.put("io_uring_setup", 425);
+        table.put("io_uring_enter", 426);
+        table.put("io_uring_register", 427);
+        table.put("open_tree", 428);
+        table.put("move_mount", 429);
+        table.put("fsopen", 430);
+        table.put("fsconfig", 431);
+        table.put("fsmount", 432);
+        table.put("fspick", 433);
+        table.put("pidfd_open", 434);
+        table.put("clone3", 435);
+        table.put("close_range", 436);
+        table.put("openat2", 437);
+        table.put("pidfd_getfd", 438);
+        table.put("faccessat2", 439);
+        table.put("process_madvise", 440);
+        table.put("epoll_pwait2", 441);
+        table.put("mount_setattr", 442);
+        table.put("quotactl_fd", 443);
+        table.put("landlock_create_ruleset", 444);
+        table.put("landlock_add_rule", 445);
+        table.put("landlock_restrict_self", 446);
+        table.put("memfd_secret", 447);
+        table.put("process_mrelease", 448);
+
+        TABLE = Collections.unmodifiableMap(table);
+    }
+
+    private SyscallTable() {
+        // Utility class
+    }
+
+    /**
+     * 根据系统调用名称获取编号
+     * @param name 系统调用名称
+     * @return 系统调用编号，如果不存在返回 -1
+     */
+    public static int get(String name) {
+        Integer nr = TABLE.get(name);
+        return nr != null ? nr : -1;
+    }
+
+    /**
+     * 检查系统调用名称是否存在
+     * @param name 系统调用名称
+     * @return 是否存在
+     */
+    public static boolean contains(String name) {
+        return TABLE.containsKey(name);
+    }
+
+    /**
+     * 获取所有系统调用映射
+     * @return 不可修改的映射表
+     */
+    public static Map<String, Integer> getAll() {
+        return TABLE;
+    }
+}
